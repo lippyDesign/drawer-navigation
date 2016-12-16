@@ -1,0 +1,84 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+nav {
+    border: 1px solid red;
+    display: flex;
+    justify-content: space-between;
+}
+.mainNav, .profileNav {
+    display: flex;
+
+}
+.mainNav {
+    border: 1px solid blue;
+}
+.profileNav {
+    border: 1px solid green;
+}
+
+.mainNav li, .profileNav li, .rightSliderList li, .leftSliderList li {
+    list-style-type: none;
+    border: 1px solid gray;
+    display: flex;
+}
+
+nav a, .leftSliderList li a, .rightSliderList li a {
+    color: deepskyblue;
+    text-decoration: none;
+    padding: 10px 15px;
+}
+.sliderHolder {
+    position: fixed;
+    background: white;
+    top: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.leftSlider, .rightSlider {
+    display: flex;
+}
+.leftSlider {
+    border: 1px solid pink;
+}
+.rightSlider {
+    right: 0;
+    border: 1px solid black;
+}
+.leftSliderList, .rightSliderList {
+    border: 1px solid orange;
+    display: flex;
+    flex-direction: column;
+}
+.leftSliderList li, .rightSliderList li {
+    display: flex;
+    justify-content: center;
+    padding: 0px 55px;
+}
+main {
+    position: relative;
+    height: 600px;
+    background: lightgoldenrodyellow;
+}
+
+
+.openLeft {
+    animation-name: openLeft;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+.openRight {
+    animation-name: openRight;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+@keyframes openLeft {
+    0%   {left: 0;}
+    100% {left: 300px}
+}
+@keyframes openRight {
+    0%   {right: 0;} 
+    100% {right: 300px;}
+}
