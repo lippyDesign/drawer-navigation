@@ -2,33 +2,6 @@
     padding: 0;
     margin: 0;
 }
-nav {
-    border: 1px solid red;
-    display: flex;
-    justify-content: space-between;
-}
-.mainNav, .profileNav {
-    display: flex;
-
-}
-.mainNav {
-    border: 1px solid blue;
-}
-.profileNav {
-    border: 1px solid green;
-}
-
-.mainNav li, .profileNav li, .rightSliderList li, .leftSliderList li {
-    list-style-type: none;
-    border: 1px solid gray;
-    display: flex;
-}
-
-nav a, .leftSliderList li a, .rightSliderList li a {
-    color: deepskyblue;
-    text-decoration: none;
-    padding: 10px 15px;
-}
 .sliderHolder {
     position: fixed;
     background: white;
@@ -55,14 +28,13 @@ nav a, .leftSliderList li a, .rightSliderList li a {
 .leftSliderList li, .rightSliderList li {
     display: flex;
     justify-content: center;
-    padding: 0px 55px;
+    width: 300px;
 }
 main {
     position: relative;
     height: 600px;
     background: lightgoldenrodyellow;
 }
-
 
 .openLeft {
     animation-name: openLeft;
@@ -81,4 +53,34 @@ main {
 @keyframes openRight {
     0%   {right: 0;} 
     100% {right: 300px;}
+}
+
+.drawerControlsList {
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+}
+.leftLi, .rightLi {
+    list-style-type: none;
+}
+.leftLi {
+    padding-left: 5px;
+}
+.rightLi {
+    padding-right: 5px;
+}
+.drawerControlsList button {
+    padding: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+button:focus {
+    outline:0;
+}
+button:active {
+    background: #000;
+    color: #fff;
 }

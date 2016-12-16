@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Nav from './Nav';
 
 export default class SearchBar extends Component {
     state = {
@@ -38,10 +37,18 @@ export default class SearchBar extends Component {
                     </div>
                 </section>
                 <main className={whichDrawerOpen}>
-                    <Nav
-                        openLeftDrawer={this.openLeftDrawer.bind(this)}
-                        openRightDrawer={this.openRightDrawer.bind(this)}
-                    />
+                    <ul className="drawerControlsList">
+                        <li className="leftLi">
+                            <button onClick={this.openLeftDrawer.bind(this)}>
+                                <i className="fa fa-bars fa-3x" aria-hidden="true"></i>
+                            </button>
+                        </li>
+                        <li className="rightLi">
+                            <button onClick={this.openRightDrawer.bind(this)}>
+                                <i className="fa fa-cogs fa-3x" aria-hidden="true"></i>
+                            </button>
+                        </li>
+                    </ul>
                 </main>
             </div>
         );
