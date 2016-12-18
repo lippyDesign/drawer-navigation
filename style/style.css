@@ -12,23 +12,36 @@
 }
 .leftSlider, .rightSlider {
     display: flex;
-}
-.leftSlider {
-    border: 1px solid pink;
+    background: lightcyan;
 }
 .rightSlider {
     right: 0;
-    border: 1px solid black;
 }
 .leftSliderList, .rightSliderList {
-    border: 1px solid orange;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 .leftSliderList li, .rightSliderList li {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 300px;
+    border-bottom: 1px solid gray;
+}
+.leftSliderList li:nth-last-child(1), .rightSliderList li:nth-last-child(1) {
+    border: none;
+} 
+.leftSliderList a, .rightSliderList a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 30px;
+    text-decoration: none;
+    color: darkcyan;
+    font-weight: bold;
 }
 main {
     position: relative;
@@ -46,6 +59,16 @@ main {
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
 }
+.closeRight {
+    animation-name: closeRight;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+.closeLeft {
+    animation-name: closeLeft;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
 @keyframes openLeft {
     0%   {left: 0;}
     100% {left: 300px}
@@ -53,6 +76,14 @@ main {
 @keyframes openRight {
     0%   {right: 0;} 
     100% {right: 300px;}
+}
+@keyframes closeRight {
+    0%   {right: 300px;} 
+    100% {right: 0;}
+}
+@keyframes closeLeft {
+    0%   {left: 300px;} 
+    100% {left: 0;}
 }
 
 .drawerControlsList {
