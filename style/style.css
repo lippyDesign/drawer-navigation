@@ -11,12 +11,11 @@
     height: 100%;
     justify-content: space-between;
 }
-.leftSlider, .rightSlider {
-    display: block;
-    background: lightcyan;
+.sliderHolderHelper {
+    justify-content: flex-end;
 }
-.rightSlider {
-    right: 0;
+.leftSlider, .rightSlider {
+    background: lightcyan;
 }
 .leftSliderList, .rightSliderList {
     display: flex;

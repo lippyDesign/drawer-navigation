@@ -47,10 +47,10 @@ export default class SearchBar extends Component {
 
         switch(whichDrawerOpen) {
             case 'openLeft':
-                this.setState({ whichDrawerOpen: 'closeLeft', navButtonBars: 'fa fa-bars fa-3x' });
+                this.setState({ whichDrawerOpen: 'closeLeft', leftIcon: 'fa fa-bars fa-3x' });
                 break;
             case 'openRight':
-                this.setState({ whichDrawerOpen: 'closeRight', navButtonCogs: 'fa fa-cogs fa-3x' });
+                this.setState({ whichDrawerOpen: 'closeRight', rightIcon: 'fa fa-cogs fa-3x' });
                 break;
             default:
                 return;
@@ -59,21 +59,56 @@ export default class SearchBar extends Component {
 
     render() {
         const { whichDrawerOpen, leftIcon, rightIcon } = this.state;
-        return (
-            <div className="drawerContainer">
-                <section className="sliderHolder">
-                    <LeftSlider />
-                    <RightSlider />
-                </section>
-                <main className={`main ${whichDrawerOpen}`}>
-                    <SliderControls
-                        openLeftDrawer={this.openLeftDrawer.bind(this)}
-                        openRightDrawer={this.openRightDrawer.bind(this)}
-                        leftIcon={leftIcon}
-                        rightIcon={rightIcon}
-                    />
-                </main>
-            </div>
-        );
+
+        if (whichDrawerOpen === 'openLeft') {
+            return (
+                <div className="drawerContainer">
+                    <section className="sliderHolder">
+                        <LeftSlider />
+                    </section>
+                    <main className={`main ${whichDrawerOpen}`}>
+                        <SliderControls
+                            openLeftDrawer={this.openLeftDrawer.bind(this)}
+                            openRightDrawer={this.openRightDrawer.bind(this)}
+                            leftIcon={leftIcon}
+                            rightIcon={rightIcon}
+                        />
+                    </main>
+                </div>
+            );
+        } else if (whichDrawerOpen === 'openRight') {
+            return (
+                <div className="drawerContainer">
+                    <section className="sliderHolder sliderHolderHelper">
+                        <RightSlider />
+                    </section>
+                    <main className={`main ${whichDrawerOpen}`}>
+                        <SliderControls
+                            openLeftDrawer={this.openLeftDrawer.bind(this)}
+                            openRightDrawer={this.openRightDrawer.bind(this)}
+                            leftIcon={leftIcon}
+                            rightIcon={rightIcon}
+                        />
+                    </main>
+                </div>
+            );
+        } else {
+            return (
+                <div className="drawerContainer">
+                    <section className="sliderHolder">
+                        <LeftSlider />
+                        <RightSlider />
+                    </section>
+                    <main className={`main ${whichDrawerOpen}`}>
+                        <SliderControls
+                            openLeftDrawer={this.openLeftDrawer.bind(this)}
+                            openRightDrawer={this.openRightDrawer.bind(this)}
+                            leftIcon={leftIcon}
+                            rightIcon={rightIcon}
+                        />
+                    </main>
+                </div>
+            );
+        }
     }
 }
