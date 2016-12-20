@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import LeftSlider from './LeftSlider';
+import RightSlider from './RightSlider';
+import SliderControls from './SliderControls';
 
 export default class SearchBar extends Component {
     constructor() {
@@ -6,10 +9,8 @@ export default class SearchBar extends Component {
 
         this.state = {
             whichDrawerOpen: '',
-            navButtonBars: 'fa fa-bars fa-3x',
-            navButtonCogs: 'fa fa-cogs fa-3x',
-            rightListDisplay: '',
-            leftListDisplay: ''
+            leftIcon: 'fa fa-bars fa-3x',
+            rightIcon: 'fa fa-cogs fa-3x',
         };
 
         this.pageClick = this.pageClick.bind(this);
@@ -25,11 +26,11 @@ export default class SearchBar extends Component {
     }
 
     openLeftDrawer() {
-        this.setState({ whichDrawerOpen: 'openLeft', navButtonBars: 'fa fa-times fa-3x', rightListDisplay: 'displayNone', leftListDisplay: '' });
+        this.setState({ whichDrawerOpen: 'openLeft', leftIcon: 'fa fa-times fa-3x' });
     }
 
     openRightDrawer() {
-        this.setState({whichDrawerOpen: 'openRight', navButtonCogs: 'fa fa-times fa-3x', rightListDisplay: '', leftListDisplay: 'displayNone' });
+        this.setState({whichDrawerOpen: 'openRight', rightIcon: 'fa fa-times fa-3x' });
     }
 
     pageClick(e) {
@@ -57,77 +58,20 @@ export default class SearchBar extends Component {
     }
 
     render() {
-        const { whichDrawerOpen, navButtonBars, navButtonCogs, rightListDisplay, leftListDisplay } = this.state;
+        const { whichDrawerOpen, leftIcon, rightIcon } = this.state;
         return (
             <div className="drawerContainer">
                 <section className="sliderHolder">
-                    <div className={`leftSlider ${leftListDisplay}`}>
-                        <ul className="leftSliderList">
-                            <li>
-                                <a href="#" className="sliderLink" onClick={() => this.setState({ whichDrawerOpen: 'closeLeft', navButtonBars: 'fa fa-bars fa-3x' })}>
-                                    PEOPLE
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="sliderLink" onClick={() => this.setState({ whichDrawerOpen: 'closeLeft', navButtonBars: 'fa fa-bars fa-3x' })}>
-                                    PLACES
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="sliderLink" onClick={() => this.setState({ whichDrawerOpen: 'closeLeft', navButtonBars: 'fa fa-bars fa-3x' })}>
-                                    FOOD
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="sliderLink" onClick={() => this.setState({ whichDrawerOpen: 'closeLeft', navButtonBars: 'fa fa-bars fa-3x' })}>
-                                    FAVORITES
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className={`rightSlider ${rightListDisplay}`}>
-                        <ul className="rightSliderList">
-                            <li>
-                                <a href="#" className="sliderLink" onClick={() => this.setState({ whichDrawerOpen: 'closeRight', navButtonCogs: 'fa fa-cogs fa-3x' })}>
-                                    AIRPLANE
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="sliderLink" onClick={() => this.setState({ whichDrawerOpen: 'closeRight', navButtonCogs: 'fa fa-cogs fa-3x' })}>
-                                    CAR
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="sliderLink" onClick={() => this.setState({ whichDrawerOpen: 'closeRight', navButtonCogs: 'fa fa-cogs fa-3x' })}>
-                                    BUS
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="sliderLink" onClick={() => this.setState({ whichDrawerOpen: 'closeRight', navButtonCogs: 'fa fa-cogs fa-3x' })}>
-                                    TRAIN
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="sliderLink" onClick={() => this.setState({ whichDrawerOpen: 'closeRight', navButtonCogs: 'fa fa-cogs fa-3x' })}>
-                                    BIKE
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                    <LeftSlider />
+                    <RightSlider />
                 </section>
                 <main className={`main ${whichDrawerOpen}`}>
-                    <ul className="drawerControlsList">
-                        <li className="leftLi">
-                            <button onClick={this.openLeftDrawer.bind(this)}>
-                                <i className={navButtonBars} aria-hidden="true"></i>
-                            </button>
-                        </li>
-                        <li className="rightLi">
-                            <button onClick={this.openRightDrawer.bind(this)}>
-                                <i className={navButtonCogs} aria-hidden="true"></i>
-                            </button>
-                        </li>
-                    </ul>
+                    <SliderControls
+                        openLeftDrawer={this.openLeftDrawer.bind(this)}
+                        openRightDrawer={this.openRightDrawer.bind(this)}
+                        leftIcon={leftIcon}
+                        rightIcon={rightIcon}
+                    />
                 </main>
             </div>
         );
