@@ -30,6 +30,11 @@ export default props => {
                         MY PROFILE
                     </a>
                 </li>
+                <li>
+                    <a href="#" className="sliderLink" onClick={toggleLeftDrawer}>
+                        MY HOUSE
+                    </a>
+                </li>
             </ul>
         </div>
     );
