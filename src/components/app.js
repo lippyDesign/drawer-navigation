@@ -25,29 +25,39 @@ export default class SearchBar extends Component {
         window.removeEventListener('mousedown', this.pageClick, false);
     }
 
-    openLeftDrawer() {
-        this.setState({ whichDrawerOpen: 'openLeft', leftIcon: 'fa fa-times fa-3x' });
+    toggleLeftDrawer() {
+        if (this.state.whichDrawerOpen === 'openLeft') {
+            this.setState({ whichDrawerOpen: 'closeLeft', leftIcon: 'fa fa-bars fa-3x' });
+        } else {
+            this.setState({ whichDrawerOpen: 'openLeft', leftIcon: 'fa fa-times fa-3x' });
+        }
+        
     }
 
-    openRightDrawer() {
-        this.setState({whichDrawerOpen: 'openRight', rightIcon: 'fa fa-times fa-3x' });
+    toggleRightDrawer() {
+        if (this.state.whichDrawerOpen === 'openRight') {
+            this.setState({ whichDrawerOpen: 'closeRight', rightIcon: 'fa fa-cogs fa-3x' });
+        } else {
+            this.setState({whichDrawerOpen: 'openRight', rightIcon: 'fa fa-times fa-3x' });
+        }
     }
 
     pageClick(e) {
+        console.log(e.target.className)
         const { whichDrawerOpen } = this.state;
 
-        // if (whichDrawerOpen !== 'openLeft' || whichDrawerOpen !== 'openRight') {
-        //     return;
-        // }
         if (
             e.target.className === 'fa fa-bars fa-3x'
+            || e.target.className === 'fa fa-times fa-3x'
             || e.target.className === 'fa fa-cogs fa-3x'
             || e.target.className === 'rightSlider'
+            || e.target.className === 'leftSlider'
             || e.target.className === 'sliderLink'
+            || e.target.className === 'rightButton'
+            || e.target.className === 'leftButton'
             ) {
             return;
         }
-        console.log(e.target.className)
 
         switch(whichDrawerOpen) {
             case 'openLeft':
@@ -68,14 +78,12 @@ export default class SearchBar extends Component {
             return (
                 <div className="drawerContainer">
                     <section className="sliderHolder">
-                        <LeftSlider />
+                        <LeftSlider toggleLeftDrawer={this.toggleLeftDrawer.bind(this)} />
                     </section>
                     <main className={`main ${whichDrawerOpen}`}>
                         <SliderControls
-                            openLeftDrawer={this.openLeftDrawer.bind(this)}
-                            openRightDrawer={this.openRightDrawer.bind(this)}
+                            toggleLeftDrawer={this.toggleLeftDrawer.bind(this)}
                             leftIcon={leftIcon}
-                            rightIcon={rightIcon}
                         />
                     </main>
                 </div>
@@ -84,13 +92,11 @@ export default class SearchBar extends Component {
             return (
                 <div className="drawerContainer">
                     <section className="sliderHolder sliderHolderHelper">
-                        <RightSlider />
+                        <RightSlider toggleRightDrawer={this.toggleRightDrawer.bind(this)} />
                     </section>
                     <main className={`main ${whichDrawerOpen}`}>
                         <SliderControls
-                            openLeftDrawer={this.openLeftDrawer.bind(this)}
-                            openRightDrawer={this.openRightDrawer.bind(this)}
-                            leftIcon={leftIcon}
+                            toggleRightDrawer={this.toggleRightDrawer.bind(this)}
                             rightIcon={rightIcon}
                         />
                     </main>
@@ -105,8 +111,8 @@ export default class SearchBar extends Component {
                     </section>
                     <main className={`main ${whichDrawerOpen}`}>
                         <SliderControls
-                            openLeftDrawer={this.openLeftDrawer.bind(this)}
-                            openRightDrawer={this.openRightDrawer.bind(this)}
+                            toggleLeftDrawer={this.toggleLeftDrawer.bind(this)}
+                            toggleRightDrawer={this.toggleRightDrawer.bind(this)}
                             leftIcon={leftIcon}
                             rightIcon={rightIcon}
                         />
