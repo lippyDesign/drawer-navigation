@@ -36,14 +36,18 @@ export default class SearchBar extends Component {
     pageClick(e) {
         const { whichDrawerOpen } = this.state;
 
+        // if (whichDrawerOpen !== 'openLeft' || whichDrawerOpen !== 'openRight') {
+        //     return;
+        // }
         if (
             e.target.className === 'fa fa-bars fa-3x'
             || e.target.className === 'fa fa-cogs fa-3x'
             || e.target.className === 'rightSlider'
             || e.target.className === 'sliderLink'
             ) {
-            return
+            return;
         }
+        console.log(e.target.className)
 
         switch(whichDrawerOpen) {
             case 'openLeft':
